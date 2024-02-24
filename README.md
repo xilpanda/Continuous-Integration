@@ -67,7 +67,7 @@ Ovaj dokument sadrži opis postupka postavljanja Jenkins CI/CD pipeline-a sa int
           }
       }
       ```
-    - Ovaj `Jenkinsfile` definiše dvije faze: Instalaciju zavisnosti i pokretanje Playwright testova.
+    - Ovaj `Jenkinsfile` definiše dvije faze: Install dependencie-ja i pokretanje Playwright testova.
 
 2. **Playwright Test Skripta:**
     - U `package.json` fajlu definisan je skript za pokretanje Playwright testova:
