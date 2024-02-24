@@ -2,7 +2,7 @@
 
 ## Pregled
 
-Ovaj dokument sadrži opis postupka postavljanja Jenkins CI/CD pipeline-a sa integracijom Playwright testova za automatizovano testiranje web aplikacija.
+Ovaj dokument sadrži opis postupka postavljanja Jenkins CI/CD pipeline-a sa integracijom Playwright testova (local host) za automatizovano testiranje web aplikacija.
 
 ## Instalacija i Konfiguracija Jenkinsa
 
