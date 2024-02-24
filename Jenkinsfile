@@ -2,18 +2,22 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
-                echo 'Building...'
-                // komande za build projekta ovde
+                sh 'npm install'  // Instalira npm zavisnosti, uključujući Playwright
             }
         }
-        stage('Test') {
+
+        stage('Run Playwright Tests') {
             steps {
-                echo 'Testing...'
-                // komande za testiranje projekta ovde
+                sh 'npx playwright test'  // Pokreće Playwright testove
             }
         }
-        // dodatne faze prema potrebi
+
+        // Ostale faze po potrebi
+    }
+
+    post {
+        // Obrada rezultata, notifikacija, čišćenje, itd.
     }
 }
