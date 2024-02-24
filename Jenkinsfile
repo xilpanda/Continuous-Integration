@@ -2,29 +2,50 @@ pipeline {
     agent any
 
     tools {
-        // Dodajem ovu liniju da koristite Node.js konfiguraciju definisanu u Jenkins
-        nodejs 'MyNode'
+        // Node.js konfiguracija je definisana u Jenkinsu
+        // 'NodeJS-configuration-name' ime Node.js konfiguracije
+        nodejs 'NodeJS-configuration-name'
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                // Preuzmite najnoviji kod iz SCM-a
+                checkout scm
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
-                // 'npm install' će koristiti Node.js i npm definisane u 'MyNode' konfiguraciji
+                // Instalira potrebne npm zavisnosti, uključujući Playwright
                 sh 'npm install'
             }
         }
 
         stage('Run Playwright Tests') {
             steps {
-                // 'npx playwright test' će takođe koristiti Node.js i npm iz 'MyNode'
-                sh 'npx playwright test'
+                // Pokreće Playwright testove koristeći definisanu npm skriptu 'test'
+                sh 'npm run test'
             }
         }
-
-        // Ostale faze po potrebi
     }
 
     post {
-        // Obrada rezultata, notifikacija, čišćenje, itd.
+        always {
+            // Ovde dodajem korake koji se izvršavaju nakon testova
+                   
+            
+            // Koraci za čišćenje, notifikacije, itd.
+        }
+
+        success {
+            // Koraci za uspješno izvršenje pipeline-a
+            echo 'Testovi su uspješno prošli!'
+        }
+
+        failure {
+            // Koraci za neuspješno izvršenje pipeline-a
+            echo 'Došlo je do greške tokom izvršavanja testova.'
+        }
     }
 }
