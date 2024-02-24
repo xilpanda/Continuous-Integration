@@ -1,16 +1,23 @@
 pipeline {
     agent any
 
+    tools {
+        // Dodajem ovu liniju da koristite Node.js konfiguraciju definisanu u Jenkins
+        nodejs 'MyNode'
+    }
+
     stages {
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'  // Instalira npm zavisnosti, uključujući Playwright
+                // 'npm install' će koristiti Node.js i npm definisane u 'MyNode' konfiguraciji
+                sh 'npm install'
             }
         }
 
         stage('Run Playwright Tests') {
             steps {
-                sh 'npx playwright test'  // Pokreće Playwright testove
+                // 'npx playwright test' će takođe koristiti Node.js i npm iz 'MyNode'
+                sh 'npx playwright test'
             }
         }
 
